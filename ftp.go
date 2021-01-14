@@ -16,16 +16,6 @@ import (
 	"time"
 )
 
-// EntryType describes the different types of an Entry.
-type EntryType int
-
-// The differents types of an Entry
-const (
-	EntryTypeFile EntryType = iota
-	EntryTypeFolder
-	EntryTypeLink
-)
-
 // ServerConn represents the connection to a remote FTP server.
 // A single connection only supports one in-flight data connection.
 // It is not safe to be called concurrently.
@@ -844,9 +834,4 @@ func (r *Response) Close() error {
 // SetDeadline sets the deadlines associated with the connection.
 func (r *Response) SetDeadline(t time.Time) error {
 	return r.conn.SetDeadline(t)
-}
-
-// String returns the string representation of EntryType t.
-func (t EntryType) String() string {
-	return [...]string{"file", "folder", "link"}[t]
 }
